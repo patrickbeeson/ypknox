@@ -1,0 +1,37 @@
+{% extends "base_news.html" %}
+
+{% load cache %}
+
+{% block content_level %}archive year{% endblock %}
+
+{% block title %}Press release archive for {{ year }}{{ block.super }}{% endblock %}
+
+{% block meta_description %}This is the yearly archives of press releases for YPK{% endblock %}
+
+{% block meta_keywords %}year, archive, press release, news, {{ year }}{% endblock %}
+
+{% block main_content %}
+
+<h2>Press release archive for {{ year }}</h2>
+
+{% regroup object_list by pub_date|date:"F" as month_list %}
+<ul id="archive_list">
+{% cache 500 news_archive_year year %}
+{% for month in month_list %}
+    <li>
+    	<h3>{{ month.grouper }}</h3>
+    	<ul>
+        {% for pressrelease in month.list %}
+        	<li class="pressrelease">
+        		<h4><a href="{{ pressrelease.get_absolute_url }}" title="{{ pressrelease.headline }}">{{ pressrelease.headline }}</a></h4>
+        		<p class="pub_date">Published {{ pressrelease.pub_date|date:"N j, Y" }}</p>
+        		{{ pressrelease.summary_html|safe }}
+        	</li>
+        {% endfor %}
+    	</ul>
+    </li>
+{% endfor %}
+{% endcache %}
+</ul>
+
+{% endblock %}

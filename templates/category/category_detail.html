@@ -1,0 +1,78 @@
+{% extends "base_category.html" %}
+
+{% load category cache %}
+
+{% block content_level %}detail{% endblock %}
+
+{% block title %}News, events and links for "{{ category.title }}" category{{ block.super }}{% endblock %}
+
+{% block meta_description %}{{ category.description|striptags }}{% endblock %}
+
+{% block meta_keywords %}{{ category.keywords }}{% endblock %}
+
+
+{% block main_content %}
+<h2>Content for "{{ category.title }}" category</h2>
+
+<h3>Upcoming events</h3>
+<ul id="archive_list">
+{% if category.current_event_set %}
+{% cache 500 category_events category.title %}
+{% for event in category.current_event_set %}
+	<li><a href="{{ event.get_absolute_url }}" title="{{ event.name }}">{{ event.name }}</a></li>
+{% endfor %}
+{% endcache %}
+{% else %}
+	<li>No upcoming events for this category.</li>
+{% endif %}
+</ul>
+
+
+
+<h3>Press releases</h3>
+<ul id="archive_list">
+{% if category.live_pressrelease_set %}
+{% cache 500 category_news category.title %}
+{% for pressrelease in category.live_pressrelease_set %}
+	<li><a href="{{ pressrelease.get_absolute_url }}" title="{{ pressrelease.headline }}">{{ pressrelease.headline }}</a></li>
+{% endfor %}
+{% endcache %}
+{% else %}
+	<li>No press releases for this category.</li>
+{% endif %}
+</ul>
+
+
+<h3>Links</h3>
+<ul id="archive_list">
+{% if category.link_set.all %}
+{% cache 500 category_links category.title %}
+{% for link in category.link_set.all %}
+	<li><a href="{{ link.get_absolute_url }}" title="{{ link.link_title }}">{{ link.linked_text }}</a></li>
+{% endfor %}
+{% endcache %}
+{% else %}
+	<li>No links for this category.</li>
+{% endif %}
+</ul>
+
+
+{% endblock %}
+
+{% block secondary_content %}
+<h3>Category details</h3>
+
+{{ category.description_html|safe }}
+
+<h3>More categories</h3>
+
+{% get_category_list as category_list %}
+<ul>
+{% cache 500 more_categories category.title %}
+{% for category in category_list %}
+	<li><a href="{{ category.get_absolute_url }}" title="{{ category.title }}">{{ category.title }}</a></li>
+{% endfor %}
+{% endcache %}
+</ul>
+
+{% endblock %}

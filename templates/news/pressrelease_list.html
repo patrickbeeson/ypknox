@@ -1,0 +1,54 @@
+{% extends "base_news.html" %}
+
+{% load date cache %}
+
+{% block content_level %}archive{% endblock %}
+
+{% block title %}Press release archive{{ block.super }}{% endblock %}
+
+{% block meta_description %}This is an archive of press releases for YPK{% endblock %}
+
+{% block meta_keywords %}archive, press release, news{% endblock %}
+
+{% block main_content %}
+<h2>Press release archive</h2>
+
+<ul id="archive_list">
+{% cache 500 news_list next previous %}
+{% for object in object_list %}
+	<li>
+		<h3><a href="{{ object.get_absolute_url }}" title="{{ object.headline }}">{{ object.headline }}</a></h3>
+		<p class="pub_date">Published {{ object.pub_date|date:"N j, Y" }}</p>
+		{{ object.summary_html|safe }}
+	</li>
+{% endfor %}
+{% endcache %}
+</ul>
+
+<p id="pagination">{% if has_next %}<a href="?page={{ next }}">&laquo; Older press releases</a>{% endif %}{% if has_previous %} | <a href="?page={{ previous }}">Newer press releases &raquo;</a>{% endif %}</p>
+{% endblock %}
+
+
+{% block secondary_content %}
+
+<h4>Yearly archive</h4>
+{% get_pressrelease_year_list as news_year %}
+<ul>
+{% cache 500 news_list_year %}
+{% for year in news_year reversed %}
+	<li><a href="{{ year|date:"Y"|lower }}/" title="{{ year|date:"Y" }}/">{{ year|date:"Y" }}</a></li>
+{% endfor %}
+{% endcache %}
+</ul>
+
+<h4>Monthly archive</h4>
+{% get_pressrelease_month_list as news_month %}
+<ul>
+{% cache 500 news_list_month %}
+{% for month in news_month reversed %}
+	<li><a href="{{ month|date:"Y/M"|lower }}/" title="{{ month|date:"F" }}">{{ month|date:"F" }}</a></li>
+{% endfor %}
+{% endcache %}
+</ul>
+
+{% endblock %}

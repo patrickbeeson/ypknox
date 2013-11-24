@@ -1,0 +1,41 @@
+{% extends "base_events.html" %}
+
+{% load cache %}
+
+{% block content_level %}archive{% endblock %}
+
+{% block title %}Upcoming events{{ block.super }}{% endblock %}
+
+{% block meta_description %}List of upcoming events for YPK{% endblock %}
+
+{% block meta_keywords %}upcoming, events{% endblock %}
+
+{% block main_content %}
+<h2>Upcoming events</h2>
+
+{% comment %}
+<ul id="archive_list">
+{# cache 500 event_archive #}
+{% for object in latest|dictsort:"event_date" %}
+	<li class="event">
+		<h3><a href="{{ object.get_absolute_url }}" title="{{ object.name }}">{{ object.name }}</a></h3>
+		<p class="event_meta">Held {{ object.event_date|date:"N j, Y" }} from {{ object.start_time|time:"g:i a" }} to {{ object.finish_time|time:"g:i a" }} at <a href="{{ object.location.get_absolute_url }}" title="{{ object.location.full_name }}">{{ object.location.full_name }}</a></p>
+		{{ object.description_html|safe|truncatewords:"50" }}
+	</li>
+{% endfor %}
+{# endcache #}
+</ul>
+{% endcomment %}
+
+<ul id="archive_list">
+{% cache 500 event_archive %}
+{% for event in object_list %}
+	<li class="event">
+		<h3><a href="{{ event.get_absolute_url }}" title="{{ event.name }}">{{ event.name }}</a></h3>
+		<p class="event_meta">Held {{ event.event_date|date:"N j, Y" }} from {{ event.start_time|time:"g:i a" }} to {{ event.finish_time|time:"g:i a" }} at <a href="{{ event.location.get_absolute_url }}" title="{{ event.location.full_name }}">{{ event.location.full_name }}</a></p>
+		{{ event.description_html|safe|truncatewords:"50" }}
+	</li>
+{% endfor %}
+{% endcache %}
+</ul>
+{% endblock %}

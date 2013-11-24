@@ -1,0 +1,33 @@
+{% extends "base_links.html" %}
+
+{% load cache %}
+
+{% block content_level %}archive{% endblock %}
+
+{% block title %}Links{{ block.super }}{% endblock %}
+
+{% block meta_description %}Links by the Young Professionals of Knoxville{% endblock %}
+
+{% block meta_keywords %}links, attractions, YPK, Knoxville{% endblock %}
+
+{% block main_content %}
+<h2>Links</h2>
+
+{% regroup object_list by category as category_list %}
+<ul id="archive_list">
+{% cache 500 link_list %}
+{% for category in category_list %}
+	<li>
+		<h3>{{ category.grouper }}</h3>
+		<ul id="links_for_category">
+			{% for link in category.list %}
+			<li class="link"><a href="{{ link.URL }}" title="{{ link.link_title }}" {% if link.new_window %}class="external" rel="external"{% endif %}>{{ link.linked_text }}</a></li>
+			{% endfor %}
+		</ul>
+	</li>
+{% endfor %}
+{% endcache %}
+</ul>
+{% endblock %}
+
+{% block secondary_content %}{% endblock %}

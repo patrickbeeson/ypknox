@@ -1,0 +1,22 @@
+{% extends "base_registration.html" %}
+
+{% block content_level %}pre_send{% endblock %}
+
+{% block title %}YPK registration form{{ block.super }}{% endblock %}
+
+{% block main_content %}
+<h2>Registration form</h2>
+
+	{% if form.errors %}<p class="form_errors">You'll need to correct the following errors before your registration can proceed:</p>{% else %}<p>Please fill in the following form fields to register with ypknox.com:</p>{% endif %}
+
+<form action="." method="POST" id="registration_form">
+	<fieldset>
+		<p><label for="id_username">Username:</label> {{ form.username }} <span class="form_note">{% if form.username.errors %}{{ form.username.errors.as_text }}{% else %}Alphanumeric characters only, no spaces or punctuation{% endif %}</span></p>
+		<p><label for="id_email">E-mail address:</label> {{ form.email }} <span class="form_note">{% if form.email.errors %}{{ form.email.errors.as_text }}{% else %}The e-mail address where you'll receive your confirmation message{% endif %}</span></p>
+		<p><label for="id_password1">Password:</label> {{ form.password1 }} {% if form.password1.errors %}<span class="form_note">{{ form.password1.errors.as_text }}</span>{% endif %}</p>
+		<p><label for="id_password2">Password (again):</label> {{ form.password2 }} {% if form.password2.errors %}<span class="form_note">{{ form.password2.errors.as_text }}</span>{% endif %}</p>
+    	<p class="submit"><input type="submit" value="Register"></p>
+    </fieldset>
+</form>
+
+{% endblock %}

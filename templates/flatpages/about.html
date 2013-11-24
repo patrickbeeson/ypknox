@@ -1,0 +1,51 @@
+{% extends "base_flatpages.html" %}
+
+{% block content_level %}about{% endblock %}
+
+{% block title %}{{ flatpage.title }}{{ block.super }}{% endblock %}
+
+{% block subnav %}
+<div id="about_navigation">
+	<ul id="secondary_nav">
+		<li><a href="/executive-committee/" title="About the YPK executive committee">Executive committee</a></li>
+		<li><a href="/advisory-council/" title="About the YPK advisory council">Advisory council</a></li>
+		<li><a href="/privacy/" title="Read the YPK privacy statement">Privacy</a></li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block main_content %}
+<h2>{{ flatpage.title }}</h2>
+
+<div id="body">
+	{{ flatpage.content|safe }}
+</div>
+{% endblock %}
+
+{% block secondary_content %}
+<h3>Our mission</h3>
+<p>YPK unifies young professionals through building relationships, serving our community and cultivating our Knoxville.</p>
+
+<h3>Our vision</h3>
+<p>To make Knoxville the place for young professionals to serve, unite, and inspire.</p>
+
+<h3>Our objectives</h3>
+<ul>
+	<li>Keep young professionals in Knoxville</li>
+	<li>Educate, cultivate, and motivate young business</li>
+	<li>Assist in the revival of Downtown, Market Square, The Old City, and the Strip</li>
+	<li>Provide a brainstorm forum for knowledge, development, and expression of ideas</li>
+	<li>Build and contribute philanthropy projects in Knoxville</li>
+	<li>Develop business opportunities and careers for our membership</li>
+	<li>Support Knoxville’s businesses and community leaders</li>
+</ul>
+
+
+<h3>Physical contact information</h3>
+<ul>
+	<li><strong>Address:</strong> P.O. Box 194, Knoxville TN 37901</li>
+	<li><strong>Phone:</strong> 865-246-0517</li>
+</ul>
+
+
+{% endblock %}

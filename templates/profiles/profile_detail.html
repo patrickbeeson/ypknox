@@ -1,0 +1,46 @@
+{% extends "base_profiles.html" %}
+
+{% load groups images %}
+
+{% block title %}Profile for {{ profile.user.get_full_name }}{{ block.super }}{% endblock %} 
+
+{% block content_level %}detail{% endblock %}
+
+{% block meta_description %}{{ block.super }}{% endblock %}
+
+{% block meta_keywords %}{{ block.super }}{% endblock %}
+
+{% block main_content %}
+
+<h2>Profile for {{ profile.user.get_full_name }}</h2>
+
+{% ifusergroup Members %}
+	{% if profile.mugshot %}<img src="{{ profile.mugshot|thumbnail:"75x75" }}" alt="{{ profile.user }}'s profile photo" id="profile_mugshot">{% endif %}
+
+	<ul id="user_profile">
+		<li><strong>Name:</strong> {{ profile.user.get_full_name }}</li>
+		<li><strong>Bio:</strong>
+			{{ profile.bio_html|safe }}
+		</li>
+		<li><strong>Phone number:</strong> {{ profile.phone_number }}</li>
+		{% if profile.address1 %}<li><strong>Address:</strong> {{ profile.address1 }}{% if profile.address2 %}<br />{{ profile.address2 }}{% endif %} {{ profile.city }}, {{ profile.state }} {{ profile.zip }}</li>{% endif %}
+		<li><strong>E-mail address:</strong> <a href="mailto:{{ profile.user.email }}">{{ profile.user.email }}</a></li>
+		{% if profile.personal_website %}<li><strong>Web site:</strong> <a href="{{ profile.personal_website }}">{{ profile.personal_website }}</a></li>{% endif %}
+		{% if profile.employer %}<li><strong>Employer:</strong> {% if profile.employer_website %}<a href="{{ profile.employer_website }}">{{ profile.employer }}</a>{% else %}{{ profile.employer }}{% endif %}</li>{% endif %}
+		{% if profile.resume %}<li><strong>Resume:</strong> <a href="http://media.ypknox.webfactional.com/{{ profile.resume }}">Download {{ profile.user.first_name }}'s resume</a></li>{% endif %}
+		<li><strong>Social networks:</strong>
+			<ul id="user_socialnetworks">
+				{% if profile.linkedin_profile %}<li><a href="{{ profile.linkedin_profile }}">LinkedIn</a></li>{% endif %}
+				{% if profile.facebook_profile %}<li><a href="{{ profile.facebook_profile }}">Facebook</a></li>{% endif %}
+				{% if profile.twitter_profile %}<li><a href="{{ profile.twitter_profile }}">Twitter</a></li>{% endif %}
+			</ul>
+		</li>
+	</ul>
+<p id="edit_profile"><em><a href="/profiles/edit/">&#187; Edit your profile</a></em></p>
+{% else %}
+<p>Member profiles are only viewable by other members. And you either aren't a member or your account hasn't been approved as a member by the site admins.</p>
+<p><a href="/contact/">Contact the admins</a> if you feel you're getting this message in error.</p>
+{% endifusergroup %}
+
+{% endblock %}
+

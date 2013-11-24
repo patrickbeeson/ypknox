@@ -1,0 +1,52 @@
+{% extends "base_news.html" %}
+
+{% load generic_content cache images %}
+
+{% block content_level %}detail{% endblock %}
+
+{% block title %}{{ object.headline }}{{ block.super }}{% endblock %}
+
+{% block meta_description %}{% if object.description %}{{ object.description|striptags }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block meta_keywords %}{% if object.keywords %}{{ object.keywords }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block main_content %}
+<h2>{{ object.headline }}</h2>
+
+<div id="body">
+	{% if object.lead_photo %}
+	<div id="lead_photo">
+		<img src="{{ object.lead_photo.photo|thumbnail:"190x190" }}" alt="{{ object.lead_photo.caption }}">
+		{{ object.lead_photo.caption_html|safe }}
+		{% if object.lead_photo.credit %}<p id="photo_credit">Credit: {% if object.lead_photo.external_url %}<a href="{{ object.lead_photo.external_url }}">{{ object.lead_photo.credit }}</a>{% else %}{{ object.lead_photo.credit }}{% endif %}</p>{% endif %}
+	</div>
+	{% endif %}
+	{{ object.body|safe }}
+</div>
+{% endblock %}
+
+{% block secondary_content %}
+<h3>Press release details</h3>
+
+<ul id="pressrelease_meta">
+	<li id="author"><strong>Author:</strong> {{ object.author.first_name }} {{ object.author.last_name }}</li>
+	<li id="pub_datetime"><strong>Publication date and time</strong> {{ object.pub_date|date:"N j, Y" }} at {{ object.pub_date|date:"g:i a" }}</li>
+	<li id="category"><strong>Category:</strong> <a href="{{ object.category.get_absolute_url }}" title="{{ object.category.title }}">{{ object.category.title }}</a></li>
+	{% if object.related_event %}<li id="related_event"><strong>Related event:</strong> <a href="{{ object.related_event.get_absolute_url }}" title="{{ object.related_event.name }}">{{ object.related_event.name }}</a></li>{% endif %}
+</ul>
+
+<h3>Latest press releases</h3>
+
+{% get_latest_objects news.pressrelease 5 as latest_pressreleases %}
+<ul id="latest_pressreleases">
+{% cache 500 news_detail object.headline %}
+{% for pressrelease in latest_pressreleases %}
+{% ifequal pressrelease.status '1' %}
+	<li><a href="{{ pressrelease.get_absolute_url }}" title="{{ pressrelease.headline }}">{{ pressrelease.headline }}</a></li>
+{% endifequal %}
+{% endfor %}
+{% endcache %}
+</ul>
+
+
+{% endblock %}

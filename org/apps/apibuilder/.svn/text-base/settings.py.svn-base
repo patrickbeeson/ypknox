@@ -1,0 +1,18 @@
+from django.conf import settings
+
+def flatpage_transform(obj):
+    from markdown import markdown
+    obj.content = markdown(obj.content)
+    return obj
+
+API_TRANSFORMS = {
+    # Uncomment the following to allow markdown syntax for flatpages
+    #   Just an example, you can apply transforms to any model
+    #'flatpages.flatpage':(flatpage_transform,)
+}
+API_TRANSFORMS.update(getattr(settings,'API_TRANSFORMS',{}))
+
+API_DOWNLOADABLES = getattr(settings, 'API_DOWNLOADABLES',
+                    ('pickle','csv','yaml','amf','python'))
+
+API_LOGGING = getattr(settings,' API_LOGGING', True)

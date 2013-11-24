@@ -1,0 +1,14 @@
+{% extends "base_error.html" %}
+
+{% block title %}Page not found{{ block.super }}{% endblock %}
+
+{% block content_level %}detail{% endblock %}
+
+{% block main_content %}
+<h2>Page not found</h2>
+
+<div id="body">
+	<p>You've reached a page that doesn't exist. This is commonly due to mis-typed URLs or by visiting data that has been deleted from the database.</p>
+	<p>All errors are automatically e-mailed to the Webmaster. But if you'd like help, please send us a message using the <a href="/contact/" title="YPKnox contact form">contact form</a>.</p>
+</div>
+{% endblock %}

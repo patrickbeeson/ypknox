@@ -1,0 +1,24 @@
+{% extends "base_category.html" %}
+
+{% load cache %}
+
+{% block content_level %}archive{% endblock %}
+
+{% block title %}Categories{{ block.super }}{% endblock %}
+
+{% block meta_description %}Category index for the Young Professionals of Knoxville{% endblock %}
+
+{% block meta_keywords %}categories, content, press releases, events, YPK{% endblock %}
+
+{% block main_content %}
+<h2>Categories</h2>
+
+<ul id="archive_list">
+{% cache 500 category_list %}
+{% for category in object_list %}
+	<li><a href="{{ category.get_absolute_url }}" title="{{ category.title }}">{{ category.title }}</a></li>
+{% endfor %}
+{% endcache %}
+</ul>
+
+{% endblock %}

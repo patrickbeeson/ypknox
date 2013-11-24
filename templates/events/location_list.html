@@ -1,0 +1,35 @@
+{% extends "base_location.html" %}
+
+{% load cache %}
+
+{% block content_level %}archive{% endblock %}
+
+{% block title %}Event locations{{ block.super }}{% endblock %}
+
+{% block meta_description %}Locations for events by the Young Professionals of Knoxville{% endblock %}
+
+{% block meta_keywords %}locations, events, Knoxville, YPK{% endblock %}
+
+{% block main_content %}
+<h2>Locations</h2>
+
+<ul id="archive_list">
+{% cache 500 location_list %}
+{% for location in object_list %}
+	<li class="location">
+		<h3><a href="{{ location.get_absolute_url }}" title="{{ location.full_name }}">{{ location.full_name }}</a></h3>
+		<p>{{ location.description_html|safe }}</p>
+		{% if location.current_event_set %}
+		<h4>Upcoming events for this location</h4>
+		<ul id="location_event_list">
+		{% for event in location.current_event_set %}
+			<li class="event"><a href="{{ event.get_absolute_url }}" title="{{ event.name }}">{{ event.name }}</a></li>
+		{% endfor %}
+		</ul>
+		{% endif %}
+	</li>
+{% endfor %}
+{% endcache %}
+</ul>
+
+{% endblock %}

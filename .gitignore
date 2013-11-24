@@ -1,0 +1,6 @@
+settings.py
+*.pyc
+media/images
+media/documents
+media/css/base_old.css
+media/index.html

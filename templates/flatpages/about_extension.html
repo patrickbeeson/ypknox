@@ -1,0 +1,23 @@
+{% extends "base_flatpages.html" %}
+
+{% block content_level %}about{% endblock %}
+
+{% block title %}{{ flatpage.title }}{{ block.super }}{% endblock %}
+
+{% block subnav %}
+<div id="about_navigation">
+	<ul id="secondary_nav">
+		<li><a href="/executive-committee/" title="About the YPK executive committee">Executive committee</a></li>
+		<li><a href="/advisory-council/" title="About the YPK advisory council">Advisory council</a></li>
+		<li><a href="/privacy/" title="Read the YPK privacy statement">Privacy</a></li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block main_content %}
+<h2>{{ flatpage.title }}</h2>
+
+<div id="body">
+	{{ flatpage.content|safe }}
+</div>
+{% endblock %}

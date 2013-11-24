@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/projects/public/django-apibuilder/!svn/ver/24/trunk/apibuilder/serializers
+END
+csv_.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/projects/public/django-apibuilder/!svn/ver/10/trunk/apibuilder/serializers/csv_.py
+END
+rdf.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/projects/public/django-apibuilder/!svn/ver/10/trunk/apibuilder/serializers/rdf.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/projects/public/django-apibuilder/!svn/ver/10/trunk/apibuilder/serializers/__init__.py
+END
+amf.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/projects/public/django-apibuilder/!svn/ver/24/trunk/apibuilder/serializers/amf.py
+END
+html.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/projects/public/django-apibuilder/!svn/ver/10/trunk/apibuilder/serializers/html.py
+END
+pickle.py
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/projects/public/django-apibuilder/!svn/ver/10/trunk/apibuilder/serializers/pickle.py
+END

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/public/django-apibuilder/!svn/ver/59/trunk/apibuilder
+END
+admin.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/projects/public/django-apibuilder/!svn/ver/45/trunk/apibuilder/admin.py
+END
+views.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/projects/public/django-apibuilder/!svn/ver/56/trunk/apibuilder/views.py
+END
+util.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/public/django-apibuilder/!svn/ver/51/trunk/apibuilder/util.py
+END
+client.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/projects/public/django-apibuilder/!svn/ver/45/trunk/apibuilder/client.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/projects/public/django-apibuilder/!svn/ver/58/trunk/apibuilder/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/projects/public/django-apibuilder/!svn/ver/56/trunk/apibuilder/settings.py
+END
+tests.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/projects/public/django-apibuilder/!svn/ver/45/trunk/apibuilder/tests.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/projects/public/django-apibuilder/!svn/ver/59/trunk/apibuilder/models.py
+END
+decorators.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/projects/public/django-apibuilder/!svn/ver/47/trunk/apibuilder/decorators.py
+END
+urls.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/public/django-apibuilder/!svn/ver/45/trunk/apibuilder/urls.py
+END

@@ -1,0 +1,13 @@
+{% extends "base_error.html" %}
+
+{% block title %}Server error{{ block.super }}{% endblock %}
+
+{% block content_level %}detail{% endblock %}
+
+{% block main_content %}
+<h2>Server error</h2>
+
+<div id="body">
+	<p>This site is currently unavailable due to an error with our server. We'll get it fixed as soon as possible!</p>
+</div>
+{% endblock %}

@@ -1,0 +1,6 @@
+{{ name }} has sent you a message using your contact form.
+Their e-mail address is: {{ email }}
+
+Message:
+
+{{ body }}

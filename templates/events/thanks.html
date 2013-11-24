@@ -1,0 +1,32 @@
+{% extends "base_events.html" %}
+
+{% block content_level %}detail{% endblock %}
+
+{% block title %}Thanks{{ block.super }}{% endblock %}
+
+{% block meta_description %}{{ block.super }}{% endblock %}
+
+{% block meta_keywords %}{{ block.super }}{% endblock %}
+
+{% if object.is_expired %}{% block meta_noarchive %}<meta name="robots" content="noindex">{% endblock %}{% endif %}
+
+{% block account_options %}
+		<div id="account_options">
+			{% if attendee.user.is_authenticated %}
+			<p>Welcome {{ attendee.user.username }}! {% if attendee.user.get_full_name %}<a href="/profiles/{{ attendee.user.username }}/">View your profile</a>, <a href="/profiles/edit/">edit your profile</a>{% else %}Create your <a href="/profiles/create/">profile</a>{% endif %}, or <a href="/accounts/logout/">log out</a>.</p>
+			{% else %}
+			<ul>
+				<li><a href="/accounts/login/">Log in</a></li>
+				<li><a href="/accounts/register/">Register</a></li>
+			</ul>
+			{% endif %}
+		</div>
+{% endblock %}
+
+{% block main_content %}
+<h2>Thanks for your RSVP</h2>
+
+<div id="body">
+	<p>Your RSVP for this event has been submitted. You may return to <a href="{{ event.get_absolute_url }}">the original event</a> to change your RSVP option if needed.</p>
+</div>
+{% endblock %}

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<head>
+	
+	<link href="http://media.ypknox.com/images/favicon.ico" rel="icon" type="image/x-icon">
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="description" content="{% block meta_description %}The Young Professionals of Knoxville (YPK) unifies young professionals through building relationships, serving our community and cultivating our Knoxville.{% endblock %}">
+	<meta name="keywords" content="{% block meta_keywords %}YPK, young professional, Knoxville, Tennessee, business, community, communications, relationship{% endblock %}">
+	<meta name="copyright" content="{% now "Y" %}">
+	{% block google_meta %}<meta name="verify-v1" content="Xw3FzHyjbTJ0KzCOpP6mHNa+ZCd3v32Ti1aiDReWwmI=">{% endblock %}
+	{% block meta_noarchive %}{% endblock %}
+
+	<title>{% block title %}ypknox.com{% endblock %}</title>
+	
+	{% block css %}
+	<link rel="stylesheet" href="http://media.ypknox.com/css/reset.css" type="text/css">
+	<link rel="stylesheet" href="http://media.ypknox.com/css/base.css" type="text/css">
+	{% endblock %}
+	
+	{% block js %}{% endblock %}
+	
+	{% block feed %}<link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/YoungProfessionalsOfKnoxville">{% endblock %}
+	
+	</head>
+	<body id="{% block page_type %}{% endblock %}" class="{% block content_level %}{% endblock %}">
+		{% block account_options %}
+		{% load groups %}
+		<div id="account_options">
+			{% if user.is_authenticated %}
+			<p>Welcome {{ user.username }}! {% if user.get_full_name %}<a href="/profiles/{{ user.username }}/">View your profile</a>, <a href="/profiles/edit/">edit your profile</a>{% ifusergroup Members %}, <a href="/profiles/">see all member profiles</a>{% endifusergroup %}{% else %}Create your <a href="/profiles/create/">profile</a>{% endif %}, or <a href="/accounts/logout/">log out</a>.</p>
+			{% else %}
+			<p><a href="/accounts/login/">Log in to your account</a> or <a href="/accounts/register/">register with YPK</a></li></p>
+			{% endif %}
+		</div>
+		{% endblock %}
+			
+		<div id="branding"><!--Begin branding-->
+			<h1><a href="/" title="Young Professionals of Knoxville">Young Professionals of Knoxville</a></h1>
+		</div><!--End branding-->
+		
+		<div id="navigation"><!--Begin navigation-->
+			<ul id="primary_nav">
+				<li><a href="/" title="Return to the home page">Home</a></li>
+				<li><a href="/about/" title="About Young Professionals of Knoxville">About</a></li>
+				<li><a href="/news/" title="Press releases from Young Professionals of Knoxville">News</a></li>
+				<li><a href="/events/" title="Upcoming events for Young Professionals of Knoxville">Events</a></li>
+				<li><a href="/links/" title="Links provided by Young Professionals of Knoxville">Links</a></li>
+				<li><a href="/contact/" title="Contact Young Professionals of Knoxville">Contact</a></li>
+			</ul>
+			
+			{% block subnav %}{% endblock %}
+		</div><!--End navigation-->
+		
+		<div id="search"><!--Begin search-->
+			<form action="http://www.google.com/cse" id="cse-search-box">
+				<p><input type="hidden" name="cx" value="011232062083245579586:yugjqtecbwg">
+				<input type="hidden" name="ie" value="UTF-8">
+    			<input type="text" name="q" size="31">
+    			<input type="submit" name="sa" value="Search"></p>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=en"></script>
+
+		</div><!--End search-->
+		
+		<div id="wrap"><!--Begin wrap-->
+		
+			<div id="content"><!--Begin content-->
+			
+				<div id="main_content"><!--Begin main_content-->
+				{% block main_content %}{% endblock %}
+				</div><!--End main_content-->
+				
+				<div id="secondary_content"><!--Begin secondary_content-->
+				{% block secondary_content %}{% endblock %}
+				</div><!--End secondary_content-->
+			
+			</div><!--End content-->
+				
+			<div id="site_information"><!--Begin site_information-->
+			{% comment %}
+			<!--This was commented out because there are no current benefactors to show | PB 7/26/08-->
+				<div id="benefactors">
+					<h3>Benefactors</h3>
+					<ul>
+						<li><a href="http://utk.edu" title="University of Tennessee"><img src="http://media.ypknox.com/images/ut_logo.gif" width="98" height="55" alt="University of Tennessee"></a></li>
+						<li><a href="http://www.knoxnews.com" title="Knoxville News-Sentinel"><img src="http://media.ypknox.com/images/kns_logo.gif" width="138" height="64" alt="Knoxville News-Sentinel"></a></li>
+					</ul>
+				</div>	
+			{% endcomment %}
+				<div id="copyright">
+					<p>Copyright &copy; {% now "Y" %} The Young Professionals of Knoxville. All rights reserved. Web site design by <a href="http://caseypeters.com" title="Casey Peters">Casey Peters</a>, with development by <a href="http://patrickbeeson.com" title="Patrick Beeson">Patrick Beeson</a>.</p>
+				</div>
+			</div><!--End site_information-->
+		</div><!--End wrap-->
+	
+	{% block google_analytics %}
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script>
+	<script type="text/javascript">
+		var pageTracker = _gat._getTracker("UA-177270-9");
+		pageTracker._initData();
+		pageTracker._trackPageview();
+	</script>
+	{% endblock %}
+	
+	{% block quantcast %}
+	<script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+	<script type="text/javascript">_qacct="p-704hfZThlYMBs";quantserve();</script>
+	<noscript>
+		<a href="http://www.quantcast.com/p-704hfZThlYMBs" target="_blank"><img src="http://pixel.quantserve.com/pixel/p-704hfZThlYMBs.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/></a>
+	</noscript>
+	{% endblock %}
+	</body>
+</html>
+

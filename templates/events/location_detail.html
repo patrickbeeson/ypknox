@@ -1,0 +1,47 @@
+{% extends "base_location.html" %}
+
+{% load cache %}
+
+{% block content_level %}detail{% endblock %}
+
+{% block title %}Location details and events for {{ location.full_name }}{{ block.super }}{% endblock %}
+
+{% block meta_description %}{{ location.description|striptags }}{% endblock %}
+
+{% block meta_keywords %}{{ location.full_name }}, locations, events, Knoxville, YPK{% endblock %}
+
+{% block main_content %}
+<h2>{{ location.full_name }}</h2>
+
+{{ location.description_html|safe }}
+
+{% endblock %}
+
+{% block secondary_content %}
+<h3>Location details</h3>
+<ul>
+	{% if location.street_address %}<li id="address"><strong>Address:</strong> {{ location.street_address }}</li>{% endif %}
+	<li id="city"><strong>City:</strong> {{ location.city }}</li>
+	<li id="state"><strong>State:</strong> {{ location.state}}</li>
+	<li id="zip"><strong>Zip:</strong> {{ location.zip_code }}</li>
+	{% if location.phone_number %}<li id="phone"><strong>Phone number:</strong> {{ location.phone_number }}</li>{% endif %}
+	{% if location.web_site %}<li id="website"><strong>Web site:</strong> <a href="{{ location.web_site }}">Visit the Web site for {{ location.full_name }}</a></li>{% endif %}
+	{% if location.google_map_link %}<li id="map"><strong>Map:</strong> <a href="{{ location.google_map_link }}">Find the location for {{ location.full_name }}</a></li>{% endif %}
+</ul>
+
+<h3>Upcoming events</h3>
+
+{% if location.current_event_set %}
+<ul>
+{% cache 500 event_detail location.full_name %}
+{% for event in location.current_event_set %}
+	<li><a href="{{ event.get_absolute_url }}" title="{{ event.name }}">{{ event.name }}</a></li>
+{% endfor %}
+{% endcache %}
+</ul>
+{% else %}
+<p>No upcoming events for this location.</p>
+{% endif %}
+
+{% endblock %}
+

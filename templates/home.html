@@ -1,0 +1,73 @@
+{% extends "base_generic.html" %}
+
+{% load cache generic_content %}
+
+{% block page_type %}home{% endblock %}
+
+{% block title %}{{ block.super }} | Young Professionals of Knoxville{% endblock %}
+
+{% block main_content %}
+<h2>Latest news <a href="/feeds/news/" title="YPK News RSS"><img src="http://media.ypknox.com/images/feed_icon.gif" width="14" height="14" alt="RSS icon" class="rss_icon"></a></h2>
+{% cache 500 home_featuredevent %}
+{% for event in event_list %}
+{% if event.featuredevent_set.all %}
+{% get_latest_object events.featuredevent as featured_event %}
+<div id="featured_event">
+	<h4><a href="{{ featured_event.event_to_feature.get_absolute_url }}" title="{{ featured_event.event_to_feature.name }}">{{ featured_event.event_to_feature.name }}, {{ featured_event.event_to_feature.event_date|date:"N j, Y" }} at {{ featured_event.event_to_feature.location }} &raquo;</a></h4>
+	<a href="{{ featured_event.event_to_feature.get_absolute_url }}" title="{{ featured_event.event_to_feature.name }}"><img src="http://media.ypknox.com/{{ featured_event.featured_event_photo.photo }}" width="{{ featured_event.featured_event_photo.photo_width}}" height="{{ featured_event.featured_event_photo.photo_height }}" alt="{{ featured_event.featured_event_photo.caption }}"></a>
+</div>
+{% endif %}
+{% endfor %}
+{% endcache %}
+
+<ul id="latest_news">
+{% cache 500 home_latestnews %}
+{% for pressrelease in pressrelease_list %}
+	<li>
+		<h4><a href="{{ pressrelease.get_absolute_url }}" title="{{ pressrelease.headline }}">{{ pressrelease.headline }}</a></h4>
+		{{ pressrelease.summary_html|safe|truncatewords:"50" }}
+	</li>
+{% endfor %}
+{% endcache %}
+</ul>
+
+{% endblock %}
+
+{% block secondary_content %}
+<p id="mission"><strong>We are YPK</strong>, a non-profit organization that unifies young professionals through building relationships, serving our community and cultivating our Knoxville.</p>
+
+<div id="email_updates">
+	<h3>Get YPK updates via email</h3>
+	<form id="feedburner_email" action="http://www.feedburner.com/fb/a/emailverify" method="post" target="popupwindow" onsubmit="window.open('http://www.feedburner.com/fb/a/emailverifySubmit?feedId=1514663', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+	<p>
+		<label for="email">Enter your e-mail address:</label>
+		<input id="email" name="email" type="text" value="Enter your e-mail address" onfocus="if (this.value == 'Enter your e-mail address') { this.className = 'textinput'; this.value = ''; }" onblur="if (this.value == '') { this.className = 'textinput placeholder'; this.value = 'Enter your e-mail address'; }">
+		<input type="hidden" name="url" value="http://feeds.feedburner.com/~e?ffid=1187872">
+		<input id="submit" type="submit" name="submit" value="Submit">
+	</p>
+</form>
+</div>
+
+<div id="flickr_photos">
+		<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?user=13501243%40N08&amp;count=4&amp;layout=h&amp;size=s&amp;source=user&amp;display=random"></script>
+</div>
+
+<h3>Upcoming events <a href="/feeds/events/" title="YPK Events RSS"><img src="http://media.ypknox.com/images/feed_icon.gif" width="14" height="14" alt="RSS icon" class="rss_icon"></a></h3>
+
+<ul id="latest_events">
+{% cache 500 home_latestevents %}
+{% for event in event_list %}
+{% if event.featuredevent_set.all %}
+{% else %}
+	<li class="event">
+		<h4><a href="{{ event.get_absolute_url }}">{{ event.name }}</a></h4>
+		<p class="event_meta">Held {{ event.event_date|date:"N j, Y" }} at <a href="{{ event.location.get_absolute_url }}" title="{{ event.location.name }}">{{ event.location.name }} {% if event.location.prename %}{{ event.location.prename }}{% endif %}</a></p>
+		{{ event.description_html|safe|truncatewords:"50" }}
+	</li>
+{% endif %}
+{% endfor %}
+{% endcache %}
+</ul>
+
+
+{% endblock %}

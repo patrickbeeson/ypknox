@@ -1,0 +1,958 @@
+/* YPKnox style sheet */
+/* Author: Patrick Beeson, patrickbeeson@gmail.com, http://patrickbeeson.com */
+/* Designer: Casey Peters */
+/* Copyright 2008 All rights reserved */
+/* Updated 4/2/09 */
+
+/* Global styles */
+
+p, ul, ol { 
+margin-bottom: 18px; 
+}
+
+ul {
+list-style-type: square;
+margin-left: 2em;
+}
+
+ol {
+list-style-type:decimal;
+margin-left: 2em;
+}
+
+h1 { 
+font-size: 24px; 
+line-height: 36px;
+margin-bottom: 18px; 
+}
+ 
+h2 { 
+font-size: 18px; 
+line-height: 18px; 
+margin-bottom: 18px;
+}
+
+h3 { 
+font-size: 12px; 
+line-height: 18px; 
+}
+
+body {
+background: #aaa;
+font-family: 'Lucida Grande',Arial,sans-serif;
+font-size: 12px;
+line-height: 18px;
+text-align: center;
+position: relative;
+}
+
+#wrap {
+width: 960px;
+margin: 0 auto;
+text-align: left;
+overflow: auto;
+}
+
+/* Branding */
+
+#branding {
+background: #3e3e3e;
+border-bottom: 1px solid #e4e5e4;
+padding-bottom: 2px;
+text-align: left;
+}
+
+#branding h1 {
+width: 960px;
+margin: 0 auto;
+background: url(http://media.ypknox.com/images/ypk_logo_slug.gif) no-repeat;
+height: 107px;
+}
+
+#branding a {
+position: absolute;
+text-indent: -9999px;
+height: 107px;
+width: 450px;
+}
+
+/* Authentication */
+
+#account_options {
+background: #000;
+color: #fff;
+}
+
+#account_options p {
+padding: 9px 0 9px 0;
+margin-bottom: 0;
+}
+
+#account_options p a, #account_options li a {
+color: #fff;
+}
+
+#account_options p a:hover, #account_options li a:hover {
+color: #000;
+background: #fff;
+text-decoration: none;
+}
+
+#account_options ul {
+list-style: none;
+margin: 0;
+padding: 9px 0;
+}
+
+#account_options li {
+display: inline;
+}
+
+/* Navigation */
+
+#navigation {
+background: #8b8b8b;
+text-align: left;
+border-bottom: 1px solid #d3d3d3;
+}
+
+#navigation ul {
+width: 960px;
+margin: 0 auto;
+list-style: none;
+padding: 8px 0;
+}
+
+#navigation li {
+margin-left: 10px;
+display: inline;
+text-transform: uppercase;
+padding-right: 15px;
+}
+
+#navigation a {
+text-decoration: none;
+color: #fff;
+font-weight: bold;
+}
+
+#about_navigation {
+position: relative;
+width: 960px;
+margin: 0 auto;
+}
+
+#navigation #secondary_nav {
+background: #8b8b8b;
+position: absolute;
+margin-left: 0;
+list-style: none;
+padding: 8px 0;
+width: 960px;
+opacity: .8;
+filter: alpha(opacity=80);
+top: 1px;
+}
+
+#secondary_nav li a {
+color: #000;
+}
+
+#flatpage.about #main_content h2 {
+margin-bottom: 8px;
+}
+
+.about #main_content, .about #secondary_content {
+margin-top: 45px;
+}
+
+/* Search */
+
+#search {
+position: relative;
+width: 960px;
+margin: 0 auto;
+}
+
+#search form {
+position: absolute;
+right: 10px;
+bottom: 7px;
+}
+
+#search p {
+margin-bottom: 0;
+}
+
+/* Content layout */
+
+#content {
+background: #f5f5f5 url(http://media.ypknox.com/images/ypk_background.gif) no-repeat center top;
+overflow: auto;
+}
+
+#main_content {
+width: 573px;
+float: left;
+margin: 9px 10px;
+display: inline;
+}
+
+#secondary_content {
+width: 347px;
+float: right;
+margin: 9px 10px;
+display: inline;
+}
+
+/* Main content */
+
+h2 {
+text-transform: uppercase;
+padding-bottom: 9px;
+border-bottom: 1px dotted #999;
+}
+
+#latest_news {
+list-style: none;
+margin-left: 0;
+margin-top: 4px;
+}
+
+#latest_news h4 a {
+background: #004866;
+color: #fff;
+text-decoration: none;
+padding: 2px;
+}
+
+#latest_news h4 a:hover {
+background: #fff;
+color: #004866;
+}
+
+#latest_news li p a {
+color: #000;
+}
+
+#latest_news li p a:hover {
+text-decoration: none;
+background: #000;
+color: #fff;
+}
+
+#body a {
+color: #000;
+}
+
+#body a:hover {
+text-decoration: none;
+background: #000;
+color: #fff;
+}
+
+/* Secondary content */
+
+#mission {
+padding-bottom: 10px;
+border-bottom: 1px dotted #999;
+}
+
+#secondary_content h3 {
+text-transform: uppercase;
+margin-top: 9px;
+font-size: 18px;
+border-bottom: 1px dotted #999;
+padding-bottom: 9px;
+}
+
+#secondary_content h3 .rss_icon {
+position: relative;
+left: 150px;
+}
+
+#latest_events {
+list-style: none;
+margin-left: 0;
+margin-top: 9px;
+}
+
+#latest_events .event {
+clear: left;
+}
+
+#latest_events h4 a {
+text-decoration: underline;
+color: #000;
+}
+
+#latest_events h4 a:hover {
+background: #000;
+text-decoration: none;
+color: #fff;
+}
+
+#latest_events .event_meta {
+color: #3e3e3e;
+font-style: italic;
+margin-top: 9px;
+margin-bottom: 9px;
+}
+
+#latest_events .event_meta a {
+color: #000;
+text-decoration: underline;
+}
+
+#latest_events .event_meta a:hover {
+background: #000;
+color: #fff;
+text-decoration: none;
+}
+
+#flickr_photos {
+padding-bottom: 9px;
+}
+
+#flickr_photos img {
+margin-top: 7px;
+border: 5px solid #a6a6a6;
+margin-left: 9px;
+width: 65px;
+height: 65px;
+}
+
+.login #secondary_content a, .detail #secondary_content a {
+color: #000;
+}
+
+.login #secondary_content a:hover, .detail #secondary_content a:hover {
+color: #fff;
+background: #000;
+text-decoration: none;
+}
+
+/* Featured event */
+
+#main_content .rss_icon {
+position: relative;
+left: 425px;
+}
+
+#featured_event {
+position: relative;
+}
+
+#featured_event h4 {
+background: #000;
+position: absolute;
+width: 568px;
+top: 152px;
+opacity: .8;
+filter: alpha(opacity=80);
+padding: 5px 0 5px 5px;
+}
+
+#featured_event h4 a {
+color: #fff;
+text-decoration: none;
+}
+
+/* Email updates */
+
+#secondary_content #email_updates h3 {
+background: #febf04;
+color: #fff;
+text-transform: uppercase;
+font-size: 18px;
+padding: 3px;
+border-bottom: none;
+margin-bottom: 9px;
+}
+
+#feedburner_email p {
+margin-bottom: 9px;
+}
+
+#feedburner_email #email {
+width: 274px;
+}
+
+#feedburner_email label {
+display: none;
+}
+
+/* Site information */
+
+#site_information {
+clear: both;
+background: #3e3e3e;
+
+}
+
+#benefactors h3 {
+text-indent: -9999px;
+background: url(http://media.ypknox.com/images/benefactor_title.png) no-repeat 10px -5px;
+height: 35px;
+}
+
+#benefactors ul {
+list-style: none;
+margin-left: 0;
+margin-top: 18px;
+overflow: auto;
+width: 573px;
+text-align: right;
+margin-left: 10px;
+}
+
+#benefactors li {
+display: inline;
+margin-right: 18px;
+}
+
+#copyright {
+background: #3e3e3e;
+text-align: center;
+}
+
+#copyright p {
+color: #898989;
+padding: 9px;
+margin-bottom: 0;
+}
+
+#copyright p a {
+color: #fff;
+}
+
+#copyright p a:hover {
+text-decoration: none;
+background: #fff;
+color: #000;
+}
+
+/* Event detail */
+
+#expired_flag {
+background: #ffc url(http://media.ypknox.com/images/icon_alert.gif) no-repeat left;
+padding-left: 25px;
+text-transform: uppercase;
+font-weight: bold;
+}
+
+.detail #main_content h2 {
+border-bottom: 0;
+padding-bottom: 0;
+text-transform: none;
+background: #004866;
+padding: 3px;
+color: #fff;
+margin-bottom: 12px;
+}
+
+.detail #secondary_content h3 {
+margin-top: 0;
+background: #febf04;
+color: #fff;
+text-transform: uppercase;
+font-size: 18px;
+padding: 3px;
+border-bottom: none;
+margin-bottom: 12px;
+}
+
+#event_rsvp {
+border-top: 1px solid #ccc;
+clear: both;
+}
+
+#event_rsvp h3 {
+padding-top: 12px;
+margin-bottom: 9px;
+font-size: 18px;
+}
+
+#rsvp_form {
+padding-top: 9px;
+position: relative;
+}
+
+#rsvp_form p {
+clear: both;
+padding-bottom: 18px;
+}
+
+#rsvp_form label {
+float: left;
+font-weight: bold;
+}
+
+#rsvp_form input, #rsvp_form textarea, #rsvp_form select {
+float: right;
+}
+
+#id_attending_status {
+width: 135px;
+}
+
+#id_number_of_guests {
+width: 20px;
+}
+
+#rsvp_form textarea {
+width: 300px;
+}
+
+#submit_rsvp {
+margin-top: 20px;
+clear: both;
+}
+
+#rsvp_form input:focus, #rsvp_form textarea:focus {
+background: #ffc;
+}
+
+#rsvp_form .form_note {
+font-size: 9px;
+position: absolute;
+left: 593px;
+margin-bottom: 0px;
+width: 275px;
+background: #ffc;
+}
+
+/* Event Archive */
+
+.archive #main_content h2 {
+margin-bottom: 9px;
+}
+
+.month #main_content h2 {
+margin-bottom: 9px;
+}
+
+#archive_list {
+list-style: none;
+margin-left: 0;
+}
+
+#archive_list h3 {
+font-size: 12px;
+}
+
+#archive_list h3 a, .month .event h4 a, .year .event h4 a {
+background: #004866;
+padding: 3px;
+color: #fff;
+text-decoration: none;
+color: #fff;
+}
+
+#archive_list h3 a:hover, .month .event h4 a:hover, .year .event h4 a:hover {
+background: #fff;
+color: #004866;
+}
+
+.archive .event_meta {
+color: #3e3e3e;
+font-style: italic;
+margin-top: 9px;
+margin-bottom: 9px;
+}
+
+.archive .event_meta a {
+color: #000;
+text-decoration: underline;
+}
+
+.archive .event_meta a:hover {
+background: #000;
+color: #fff;
+text-decoration: none;
+}
+
+#archive_list ul {
+margin-left: 0;
+}
+
+.month #archive_list h3, .year #archive_list h3 {
+margin-bottom: 18px;
+}
+
+.month .event, .year .event {
+list-style: none;
+}
+
+/* Locations */
+
+#archive_list #location_event_list {
+margin-left: 2em;
+}
+
+#location_event_list a {
+color: #000;
+}
+
+#location_event_list a:hover {
+background: #000;
+color: #fff;
+text-decoration: none;
+}
+
+/* Flatpages */
+
+#flatpage #main_content h2 {
+margin-bottom: 9px;
+}
+
+#flatpage #secondary_content h3 {
+background: #febf04;
+color: #fff;
+text-transform: uppercase;
+font-size: 18px;
+padding: 3px;
+border-bottom: none;
+margin-top: 0;
+margin-bottom: 12px;
+}
+
+/* Links */
+
+#archive_list #links_for_category {
+margin-left: 2em;
+}
+
+.link a {
+color: #000;
+}
+
+.link a:hover {
+color: #fff;
+background: #000;
+text-decoration: none;
+}
+
+/* Categories */
+
+#categories #archive_list {
+list-style: square;
+margin-left: 2em;
+}
+
+#categories #archive_list a {
+color: #000;
+}
+
+#categories #archive_list a:hover {
+color: #fff;
+background: #000;
+text-decoration: none;
+}
+
+/* Contact */
+
+#contact #content {
+float: left;
+overflow: visible;
+padding-bottom: 18px;
+}
+
+#contact #secondary_content h3 {
+background: #febf04;
+color: #fff;
+text-transform: uppercase;
+font-size: 18px;
+padding: 3px;
+border-bottom: none;
+margin-top: 0;
+margin-bottom: 12px;
+}
+
+#contactform {
+padding-top: 8px;
+}
+
+#contactform p {
+clear: both;
+padding-bottom: 18px;
+}
+
+#contactform label {
+float: left;
+font-weight: bold;
+}
+
+#contactform input, #contactform textarea {
+float: right;
+}
+
+#id_name, #id_email {
+width: 350px;
+}
+
+#contactform textarea {
+width: 354px;
+}
+
+#submit_comment input {
+margin-top: 20px;
+}
+
+#contactform input:focus, #contactform textarea:focus {
+background: #ffc;
+}
+
+/* News */
+
+#lead_photo {
+float: left;
+margin: 5px 10px 5px 0;
+}
+
+#lead_photo img {
+float: left;
+margin-bottom: 11px;
+border: 2px solid #3e3e3e;
+}
+
+#lead_photo p {
+clear: left;
+}
+
+#photo_credit {
+color: #333;
+font-style: italic;
+}
+
+#pagination a {
+color: #000;
+}
+
+#pagination a:hover {
+text-decoration: none;
+background: #000;
+color: #fff;
+}
+
+.pub_date {
+color: #3e3e3e;
+font-style: italic;
+margin-top: 9px;
+margin-bottom: 9px;
+}
+
+#news.archive #secondary_content h4 {
+background: #febf04;
+color: #fff;
+text-transform: uppercase;
+font-size: 18px;
+padding: 3px;
+border-bottom: none;
+margin-top: 0;
+margin-bottom: 12px;
+}
+
+#news.archive #secondary_content a {
+color: #000;
+}
+
+#news.archive #secondary_content a:hover {
+color: #fff;
+background: #000;
+text-decoration: none;
+}
+
+#archive_list h3 a, .month .pressrelease h4 a, .year .pressrelease h4 a {
+background: #004866;
+padding: 3px;
+color: #fff;
+text-decoration: none;
+color: #fff;
+}
+
+#archive_list h3 a:hover, .month .pressrelease h4 a:hover, .year .pressrelease h4 a:hover {
+background: #fff;
+color: #004866;
+}
+
+.month .pressrelease, .year .pressrelease {
+list-style: none;
+}
+
+/* Error */
+
+#error #main_content h2 {
+background: none;
+color: #000;
+margin-bottom: 9px;
+padding: 0;
+text-transform: uppercase;
+font-size: 18px;
+border-bottom: 1px dotted #999;
+padding-bottom: 9px;
+}
+
+/* Registration and Login/Logout */
+
+#registration #content {
+float: left;
+overflow: visible;
+padding-bottom: 18px;
+}
+
+#registration #main_content a {
+color: #000;
+}
+
+#registration #main_content a:hover {
+background: #000;
+color: #fff;
+text-decoration: none;
+}
+
+#registration_form {
+padding-top: 8px;
+position: relative;
+}
+
+#registration_form p {
+clear: both;
+padding-bottom: 18px;
+}
+
+#registration_form label {
+float: left;
+font-weight: bold;
+}
+
+#registration_form input {
+float: right;
+}
+
+#id_username, #id_password, #id_password1, #id_password2, #id_email {
+width: 350px;
+}
+
+#id_old_password, #id_new_password1, #id_new_password2 {
+width: 200px;
+}
+
+.submit input {
+margin-top: 20px;
+}
+
+#registration_form input:focus {
+background: #ffc;
+}
+
+#registration_form .form_note, #registration_form .form_error {
+font-size: 9px;
+position: absolute;
+left: 593px;
+margin-bottom: 0px;
+width: 250px;
+background: #ffc;
+}
+
+.login #secondary_content h3 {
+margin-top: 0;
+background: #febf04;
+color: #fff;
+text-transform: uppercase;
+font-size: 18px;
+padding: 3px;
+border-bottom: none;
+margin-bottom: 12px;
+}
+
+/* Profiles */
+
+#profile_mugshot {
+float: right;
+}
+
+#user_profile {
+list-style: none;
+margin-left: 0;
+margin-top: 12px;
+}
+
+#profiles #content {
+float: left;
+overflow: visible;
+padding-bottom: 18px;
+}
+
+#profiles #main_content a {
+color: #000;
+}
+
+#profiles #main_content a:hover {
+background: #000;
+color: #fff;
+text-decoration: none;
+}
+
+#profile_form {
+padding-top: 8px;
+position: relative;
+}
+
+#profile_form p {
+clear: both;
+padding-bottom: 18px;
+}
+
+#profile_form label {
+float: left;
+font-weight: bold;
+}
+
+#profile_form input, #profile_form textarea, #profile_form select {
+float: right;
+}
+
+#id_first_name, #id_last_name, #id_bio, #id_phone_number, #id_birth_date, #id_address1, #id_address2, #id_city, #id_zip, #id_employer, #id_employer_website, #id_linkedin_profile, #id_facebook_profile, #id_twitter_profile, #id_is_public, #id_personal_website {
+width: 250px;
+}
+
+#id_state {
+width: 100px;
+}
+
+#id_mugshot, #id_resume {
+width: 224px;
+}
+
+#profile_form textarea {
+width: 375px;
+margin-bottom: 4px
+}
+
+#submit_comment input {
+margin-top: 20px;
+}
+
+#profile_form input:focus, #profile_form textarea:focus {
+background: #ffc;
+}
+
+#profile_form .form_note, #profile_form .form_error {
+font-size: 9px;
+position: absolute;
+left: 593px;
+margin-bottom: 0px;
+width: 250px;
+background: #ffc;
+}
+
+#profile_form label.not-required {
+font-weight: normal;
+color: #3e3e3e;
+}
+
+#edit_profile {
+background: #ffc;
+display: inline;
+}

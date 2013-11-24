@@ -1,0 +1,95 @@
+{% extends "base_events.html" %}
+
+{% load cache images groups %}
+
+{% block content_level %}detail{% endblock %}
+
+{% block title %}{{ object.name }}{{ block.super }}{% endblock %}
+
+{% block meta_description %}{{ object.description|striptags }}{% endblock %}
+
+{% block meta_keywords %}{% if object.keywords %}{{ object.keywords }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+
+{% if object.is_expired %}{% block meta_noarchive %}<meta name="robots" content="noindex">{% endblock %}{% endif %}
+
+{% block main_content %}
+<h2>{{ object.name }}</h2>
+
+<div id="body">
+	{% if object.is_expired %}<p id="expired_flag">Expired event</p>{% endif %}
+	{% if object.lead_photo %}
+	<div id="lead_photo">
+		<img src="{{ object.lead_photo.photo|thumbnail:"190x190" }}" alt="{{ object.lead_photo.caption }}">
+		{{ object.lead_photo.caption_html|safe }}
+		{% if object.lead_photo.credit %}<p id="photo_credit">Credit: {% if object.lead_photo.external_url %}<a href="{{ object.lead_photo.external_url }}">{{ object.lead_photo.credit }}</a>{% else %}{{ object.lead_photo.credit }}{% endif %}</p>{% endif %}
+	</div>
+	{% endif %}
+	{{ object.description_html|safe }}
+
+	{% if not object.is_expired %}
+		{% if object.rsvp %}
+			{% ifequal object.audience 4 %}
+				{% ifusergroup Members %}
+			<div id="event_rsvp">
+			{% if user.is_authenticated %}
+				<h3>RSVP for this event</h3>
+				<form action="." method="POST" enctype="multipart/form-data" id="rsvp_form">
+					<fieldset>
+						<p><label for="id_attending_status">Attending status:</label> {{ form.attending_status }} {% if form.attending_status.errors %}<span class="form_note">{{ form.attending_status.errors.as_text }}</span>{% endif %}</p>
+						<p><label for="id_number_of_guests">Number of guests:</label> {{ form.number_of_guests }} <span class="form_note">{% if form.number_of_guests.errors %}{{ form.number_of_guests.errors.as_text }}{% comment %}{% else %}{{ form.number_of_guests.help_text }}{% endcomment %}{% endif %}</span></p>
+						<p><label for="id_comment">Comment:</label> {{ form.comment }} <span class="form_note">{% if form.comment.errors %}{{ form.comment.errors.as_text }}{% comment %}{% else %}{{ form.comment.help_text }}{% endcomment %}{% endif %}</span></p>
+						<input type="submit" value="RSVP" id="submit_rsvp">
+					</fieldset>
+				</form>
+			{% else %}
+				<p>You must be <a href="/accounts/login/">logged-in</a> or <a href="/accounts/register/">registered</a> to RSVP for an event!</p>
+			{% endif %}
+			</div>
+			{% else %}
+			<p>You must be a YPK member to RSVP for this event.</p>
+				{% endifusergroup %}
+			{% else %}
+						<div id="event_rsvp">
+			{% if user.is_authenticated %}
+				<h3>RSVP for this event</h3>
+				<form action="." method="POST" enctype="multipart/form-data" id="rsvp_form">
+					<fieldset>
+						<p><label for="id_attending_status">Attending status:</label> {{ form.attending_status }} {% if form.attending_status.errors %}<span class="form_note">{{ form.attending_status.errors.as_text }}</span>{% endif %}</p>
+						<p><label for="id_number_of_guests">Number of guests:</label> {{ form.number_of_guests }} <span class="form_note">{% if form.number_of_guests.errors %}{{ form.number_of_guests.errors.as_text }}{% comment %}{% else %}{{ form.number_of_guests.help_text }}{% endcomment %}{% endif %}</span></p>
+						<p><label for="id_comment">Comment:</label> {{ form.comment }} <span class="form_note">{% if form.comment.errors %}{{ form.comment.errors.as_text }}{% comment %}{% else %}{{ form.comment.help_text }}{% endcomment %}{% endif %}</span></p>
+						<input type="submit" value="RSVP" id="submit_rsvp">
+					</fieldset>
+				</form>
+			{% else %}
+				<p>You must be <a href="/accounts/login/">logged-in</a> or <a href="/accounts/register/">registered</a> to RSVP for an event!</p>
+			{% endif %}
+			</div>
+			{% endifequal %}
+		{% endif %}
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block secondary_content %}
+<h3>Event details</h3>
+
+<ul>
+	<li id="author"><strong>Location:</strong> <a href="{{ object.location.get_absolute_url }}" title="{{ object.location.full_name }}">{{ object.location.full_name }}</a></li>
+	<li id="pub_datetime"><strong>Event date and time:</strong> {{ object.event_date|date:"N j, Y" }} from {{ object.start_time|time:"g:i a" }} to {{ object.finish_time|time:"g:i a" }}</li>
+	<li id="attire"><strong>Attire</strong>: {% ifequal object.attire 1 %}Casual{% else %}{% ifequal object.attire 2 %}Formal{% else %}{% ifequal object.attire 3 %}Business casual{% endifequal %}{% endifequal %}{% endifequal %}</li>
+	{% if object.rsvp %}<li id="RSVP"><strong>Number of attendees:</strong> {{ object.expected_attendence }}</li>{% endif %}
+	<li id="category"><strong>Category:</strong> <a href="{{ object.category.get_absolute_url }}" title="{{ object.category }}">{{ object.category }}</a></li>
+</ul>
+
+<h3>Related upcoming events</h3>
+
+<ul>
+{% cache 500 event_detail object.name %}
+{% for object in object.category.current_event_set|slice:"5" %}
+	<li><a href="{{ object.get_absolute_url }}" title="{{ object.name }}">{{ object.name }}</a></li>
+{% endfor %}
+{% endcache %}
+</ul>
+
+
+{% endblock %}

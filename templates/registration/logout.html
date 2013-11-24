@@ -1,0 +1,10 @@
+{% extends "base_registration.html" %}
+
+{% block content_level %}logout{% endblock %}
+
+{% block title %}Log out of your YPK account{{ block.super }}{% endblock %}
+
+{% block main_content %}
+<h2>Logged out</h2>
+	<p>You are now logged out of your YPK account. You can <a href="/accounts/login/">log back in</a> later.</p>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base_events.html" %}
+
+{% load cache %}
+
+{% block content_level %}archive day{% endblock %}
+
+{% block title %}Upcoming events for {{ day|date:"l, F jS" }}{{ block.super }}{% endblock %}
+
+{% block meta_description %}Upcoming YPK events for {{ day|date:"l, F jS" }}{% endblock %}
+
+{% block meta_keywords %}activities, upcoming, YPK, event, {{ month|date:"F" }}{% endblock %}
+
+{% block main_content %}
+
+<h2>Upcoming events for {{ day|date:"l, F jS" }}</h2>
+
+<ul id="archive_list">
+{% cache 500 event_archive_day day %}
+{% for event in object_list %}
+    <li class="event">
+    	<h3><a href="{{ event.get_absolute_url }}" title="{{ event.name }}">{{ event.name }}</a></h3>
+    	<p class="event_meta">Held {{ event.event_date|date:"N j, Y" }} from {{ event.start_time|time:"g:i a" }} to {{ event.finish_time|time:"g:i a" }} at <a href="{{ event.location.get_absolute_url }}" title="{{ event.location.full_name }}">{{ event.location.full_name }}</a></p>
+    	{{ event.description_html|safe|truncatewords:"50" }}
+    </li>
+{% endfor %}
+{% endcache %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base_profiles.html" %}
+
+{% block content_level %}pre_send{% endblock %}
+
+{% block title %}Create your profile{{ block.super }}{% endblock %}
+
+{% block meta_description %}{{ block.super }}{% endblock %}
+
+{% block meta_keywords %}{{ block.super }}{% endblock %}
+
+{% block main_content %}
+
+<h2>Create your profile</h2>
+
+	<p><strong>Instructions:</strong> Fill in this form to create your YPK profile. It will only be viewable by other YPK members, though you can opt out by un-checking the "public profile" box. All member registrations will be approved by the site admins.</p>
+	<p><em>Note: Bold form labels indicate a required field.</em></p>
+
+<form action="." method="POST" enctype="multipart/form-data" id="profile_form">
+	<fieldset>
+	
+		<p><label for="id_first_name">First name:</label> {{ form.first_name }} {% if form.first_name.errors %}<span class="form_note">{{ form.first_name.errors.as_text }}</span>{% endif %}</p>
+		
+		<p><label for="id_last_name">Last name:</label> {{ form.last_name }} {% if form.last_name.errors %}<span class="form_note">{{ form.last_name.errors.as_text }}</span>{% endif %}</p>
+
+		<p><label for="id_bio">Bio:</label> {{ form.bio }} <span class="form_note">{% if form.bio.errors %}{{ form.bio.errors.as_text }}{% else %}{{ form.bio.help_text|safe }}{% endif %}</span></p>
+
+		<p><label for="id_phone_number">Phone number:</label> {{ form.phone_number }} <span class="form_note">{% if form.phone_number.errors %}{{ form.phone_number.errors.as_text }}{% else %}{{ form.phone_number.help_text }}{% endif %}</span></p>
+		
+		<p><label for="id_birth_date" class="not-required">Birth date:</label> {{ form.birth_date }} {% if form.birth_date.errors %}<span class="form_note">{{ form.phone_number.errors.as_text }}</span>{% endif %}</p>
+		
+		<p><label for="id_address1" class="not-required">Address1:</label> {{ form.address1 }} {% if form.address1.errors %}<span class="form_note">{{ form.address1.errors.as_text }}</span>{% endif %}</p>
+
+		<p><label for="id_address2" class="not-required">Address2:</label> {{ form.address2 }} {% if form.address2.errors %}<span class="form_note">{{ form.address2.errors.as_text }}</span>{% endif %}</p>
+		
+		<p><label for="id_city" class="not-required">City:</label> {{ form.city }} {% if form.city.errors %}<span class="form_note">{{ form.city.errors.as_text }}</span>{% endif %}</p>
+
+		<p><label for="id_state" class="not-required">State:</label> {{ form.state }} <span class="form_note">{% if form.state.errors %}{{ form.state.errors.as_text }}{% else %}{{ form.state.help_text }}{% endif %}</span></p>
+
+		<p><label for="id_zip" class="not-required">Zip:</label> {{ form.zip }} {% if form.zip.errors %}<span class="form_note">{{ form.zip.errors.as_text }}</span>{% endif %}</p>
+		
+		<p><label for="id_mugshot" class="not-required">Mug shot:</label> {{ form.mugshot }} <span class="form_note">{% if form.mugshot.errors %}{{ form.mugshot.errors.as_text }}{% else %}{{ form.mugshot.help_text }}{% endif %}</span></p>		
+
+		<p><label for="id_personal_website" class="not-required">Personal website:</label> {{ form.personal_website }} {% if form.personal_website.errors %}<span class="form_note">{{ form.personal_website.errors.as_text }}</span>{% endif %}</p>
+		
+		<p><label for="id_resume" class="not-required">Resume:</label> {{ form.resume }} <span class="form_note">{% if form.resume.errors %}{{ form.resume.errors.as_text }}{% else %}{{ form.resume.help_text }}{% endif %}</span></p>
+		
+		<p><label for="id_employer" class="not-required">Employer:</label> {{ form.employer }} {% if form.employer.errors %}<span class="form_note">{{ form.employer.errors.as_text }}</span>{% endif %}</p>
+		
+		<p><label for="id_employer_website" class="not-required">Employer website:</label> {{ form.employer_website }} {% if form.employer_website.errors %}<span class="form_note">{{ form.employer_website.errors.as_text }}</span>{% endif %}</p>
+		
+		<p><label for="id_linkedin_profile" class="not-required">Linkedin profile:</label> {{ form.linkedin_profile }} <span class="form_note">{% if form.linkedin_profile.errors %}{{ form.linkedin_profile.errors.as_text }}{% else %}{{ form.linkedin_profile.help_text }}{% endif %}</span></p>
+		
+		<p><label for="id_facebook_profile" class="not-required">Facebook profile:</label> {{ form.facebook_profile }} <span class="form_note">{% if form.facebook_profile.errors %}{{ form.facebook_profile.errors.as_text }}{% else %}{{ form.facebook_profile.help_text }}{% endif %}</span></p>
+		
+		<p><label for="id_twitter_profile" class="not-required">Twitter profile:</label> {{ form.twitter_profile }} <span class="form_note">{% if form.twitter_profile.errors %}{{ form.twitter_profile.errors.as_text }}{% else %}{{ form.twitter_profile.help_text }}{% endif %}</span></p>
+		
+		<p><label for="id_is_public">Public profile:</label> {{ form.is_public }} <span class="form_note">{% if form.is_public.errors %}{{ form.is_public.errors.as_text }}{% else %}{{ form.is_public.help_text }}{% endif %}</span></p>
+		
+		<input type="submit" value="Submit" />
+	</fieldset>
+</form>
+
+{% endblock %}

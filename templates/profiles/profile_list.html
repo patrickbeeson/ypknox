@@ -1,0 +1,31 @@
+{% extends "base_profiles.html" %}
+
+{% load groups cache %}
+
+{% block content_level %}archive{% endblock %}
+
+{% block title %}Member list{{ block.super }}{% endblock %}
+
+{% block meta_description %}{{ block.super }}{% endblock %}
+
+{% block meta_keywords %}{{ block.super }}{% endblock %}
+
+{% block main_content %}
+<h2>Member list</h2>
+
+<p>A list of all YPK members registered with this site. Only members can view this list.</p>
+
+{% ifusergroup Members %}
+{% cache 500 member_list %}
+<ul id="profile_list">
+{% for object in object_list %}
+	<li><a href="/profiles/{{ object.user }}/">{{ object.user.get_full_name }}</a></li>
+{% endfor %}
+{% endcache %}
+</ul>
+{% else %}
+<p>You are not a YPK member.</p>
+{% endifusergroup %}
+{% endblock %}
+
+{% block secondary_content %}{% endblock %}

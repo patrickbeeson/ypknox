@@ -1,0 +1,37 @@
+{% extends "base_events.html" %}
+
+{% load cache %}
+
+{% block content_level %}archive year{% endblock %}
+
+{% block title %}Upcoming events for {{ year }} {{ block.super }}{% endblock %}
+
+{% block meta_description %}This is a list of upcoming events for {{ year }}{% endblock %}
+
+{% block meta_keywords %}year, archive, events{% endblock %}
+
+{% block main_content %}
+
+<h2>Upcoming events for {{ year }}</h2>
+
+{% regroup object_list by event_date|date:"F" as month_list %}
+<ul id="archive_list">
+{% cache 500 event_archive_year year %}
+{% for month in month_list %}
+    <li>
+    	<h3>{{ month.grouper }}</h3>
+    	<ul>
+        {% for event in month.list %}
+        	<li class="event">
+        		<h4><a href="{{ event.get_absolute_url }}" title="{{ event.name }}">{{ event.name }}</a></h4>
+        		<p class="event_meta">Held {{ event.event_date|date:"N j, Y" }} from {{ event.start_time|time:"g:i a" }} to {{ event.finish_time|time:"g:i a" }} at <a href="{{ event.location.get_absolute_url }}" title="{{ event.location.full_name }}">{{ event.location.full_name }}</a></p>
+        		{{ event.description_html|safe|truncatewords:"50" }}
+        	</li>
+        {% endfor %}
+    	</ul>
+    </li>
+{% endfor %}
+{% endcache %}
+</ul>
+
+{% endblock %}
